@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .penguin {
+      width: 150px;
+      transition: transform 0.3s ease;
+      animation: waddle 1s infinite alternate;
+    }
+
+    @keyframes waddle {
+      0% { transform: translateX(-5px); }
+      100% { transform: translateX(5px); }
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #ff477e;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 5px;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes hug {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Will you be my Valentine? 💖</h1>
+    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3UwdGEyeDEzZWExbjRmbm83anNkbmZkeTEwYmNkZDZjZXcwamtkdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6vmbcKfuOqqEULjBdP/giphy.gif" alt="Penguin" class="penguin" id="penguin">
+    <div class="buttons">
+      <button onclick="sayYes()">Yes! 💕</button>
+      <button onclick="sayNo()">No 😢</button>
+    </div>
+    <p id="response"></p>
+  </div>
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script>
+    let size = 150;
+
+    function sayNo() {
+      size += 20;
+      document.getElementById("penguin").style.width = size + "px";
+      document.getElementById("penguin").style.height = size + "px";
+      document.getElementById("response").innerText = "Aww, are you sure? 😭";
+    }
+
+    function sayYes() {
+      // Change GIF and animation
+      document.getElementById("penguin").src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmlpYWRhc2FxcWs2engwYngyMzhkOTZlNmVqZmZoM2kxdGl6bnpidSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/EOfFKB2tTfWutMyZnP/giphy.gif";
+      
+      // Apply new animation for movement and hugging effect
+      document.getElementById("penguin").style.animation = "none";
+      document.getElementById("penguin").style.transform = "translateY(-50px)";  // Moves penguin up slightly
+
+      document.getElementById("response").innerText = "Yay! *Penguin Hugs You* 🐧💕";
+      document.getElementById("response").style.width = size + "px";
+    }
+  </script>
+</body>
+</html>
