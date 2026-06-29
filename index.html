@@ -27,6 +27,7 @@
     .container {
       position: relative;
       z-index: 2;
+      padding: 20px;
     }
 
     h1 {
@@ -59,6 +60,23 @@
       text-shadow: 0 0 10px rgba(255,255,255,0.8);
     }
 
+    .blessing {
+      display: block;
+      margin-top: 18px;
+      font-size: 34px;
+      font-weight: normal;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px white;
+      }
+      to {
+        text-shadow: 0 0 20px yellow, 0 0 30px pink;
+      }
+    }
+
     @keyframes popIn {
       0% {
         transform: scale(0.3);
@@ -77,6 +95,7 @@
       opacity: 0.9;
       top: -20px;
       animation: fall linear forwards;
+      z-index: 1;
     }
 
     @keyframes fall {
@@ -94,8 +113,23 @@
       left: 0;
       z-index: 1;
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      #birthdayMessage {
+        font-size: 40px;
+      }
+
+      .blessing {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <canvas id="fireworksCanvas"></canvas>
@@ -106,7 +140,10 @@
       <button onclick="showSurprise()">Surprise</button>
     </div>
 
-    <div id="birthdayMessage">🎉 Happy Birthday Aarib! 🎂</div>
+    <div id="birthdayMessage">
+      🎉 Happy Birthday Aarib! 🎂
+      <span class="blessing">Always be blessed 💖</span>
+    </div>
   </div>
 
   <script>
@@ -131,10 +168,12 @@
 
       update() {
         this.y -= this.speed;
+
         if (this.y <= this.targetY) {
           this.explode();
           return false;
         }
+
         return true;
       }
 
@@ -146,7 +185,7 @@
       }
 
       explode() {
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 35; i++) {
           particles.push(new Particle(this.x, this.y, this.color));
         }
       }
@@ -180,7 +219,7 @@
     function animateFireworks() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (Math.random() < 0.05) {
+      if (Math.random() < 0.06) {
         fireworks.push(new Firework());
       }
 
